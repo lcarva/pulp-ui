@@ -19,7 +19,7 @@
     "postinstall": "bower install",
 
     "prestart": "npm install",
-    "start": "docker run --rm --privileged -p 8080:80 -v $PWD/app/:/usr/local/apache2/htdocs/ -v $PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf -e \"PULP_SERVER=$PULP_SERVER\" httpd:2.4",
+    "start": "docker run --rm --privileged -p 8080:80 -v $PWD/app/:/usr/local/apache2/htdocs/ -v $PWD/httpd.conf:/usr/local/apache2/conf/httpd.conf -e \"PULP_SERVER=$PULP_SERVER\" -e \"AUTH=$AUTH\" httpd:2.4",
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js --single-run",
