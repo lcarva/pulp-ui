@@ -3,6 +3,9 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ui.bootstrap',
+  'ui.bootstrap.tpls',
+  'patternfly',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
