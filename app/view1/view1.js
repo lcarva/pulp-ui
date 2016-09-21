@@ -9,6 +9,13 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
+.controller('View1Ctrl', ['$http', '$scope', function($http, $scope) {
+
+    function process_repos(response) {
+        $scope.repos = response.data || [];
+    }
+
+    $http.get('/api/v2/repositories/search/', {'params': {'limit': 999}})
+        .then(process_repos);
 
 }]);
