@@ -1,7 +1,9 @@
 <h2>Pulp Repositories</h2>
 
-<ul>
-    <li ng-repeat="repo in repos">
-        {{ repo.id }}
-    </li>
-</ul>
+<button ng-click="previous_page()" ng-show="has_previous_page()"> &lt; Previous</button>
+<button ng-click="next_page()" ng-show="has_next_page()">Next &gt;</button>
+<div class="col-md-12 list-view-container">
+    <div pf-list-view config="config" items="repos">
+        {{item.id}}
+    </div>
+</div>
