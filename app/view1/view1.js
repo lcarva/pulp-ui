@@ -25,6 +25,14 @@ angular.module('myApp.view1', ['ngRoute'])
 
     function process_repos(response) {
         var new_items = response.data || [];
+        new_items.forEach(function(item) {
+            var total_content_units = 0;
+            for (var unit in item.content_unit_counts) {
+                total_content_units += item.content_unit_counts[unit];
+            }
+
+            item.total_content_units = total_content_units;
+        });
         if (new_items.length < STEP) {
             full_data_set = true;
         }

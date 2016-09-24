@@ -4,7 +4,49 @@
     <div infinite-scroll="load_more()" infinite-scroll-distance="2"
          infinite-scroll-disabled="loading">
         <div pf-list-view config="config" items="items">
-            {{item.id}}
+            <div class="list-view-pf-description">
+                <div class="list-group-item-heading">
+                    {{ item.id }}
+                </div>
+                <div class="list-group-item-text">
+                    {{ item.description }}
+                </div>
+            </div>
+            <div class="list-view-pf-additional-info" ng-if="!item.total_content_units">
+                <div class="list-view-pf-additional-info-item">
+                    Empty Repository
+                </div>
+            </div>
+            <div class="list-view-pf-additional-info" ng-if="item.total_content_units">
+                <div class="list-view-pf-additional-info-item">
+                    <span class="pficon pficon-image"></span>
+                    <strong>
+                        {{ item.content_unit_counts.docker_image || 'No' }}
+                    </strong>
+                    Images
+                </div>
+                <div class="list-view-pf-additional-info-item">
+                    <span class="fa fa-certificate"></span>
+                    <strong>
+                        {{ item.content_unit_counts.docker_blob || 'No' }}
+                    </strong>
+                    Blobs
+                </div>
+                <div class="list-view-pf-additional-info-item">
+                    <span class="fa fa-tags"></span>
+                    <strong>
+                        {{ item.content_unit_counts.docker_tag || 'No' }}
+                    </strong>
+                    Tags
+                </div>
+                <div class="list-view-pf-additional-info-item">
+                    <span class="fa fa-file-text"></span>
+                    <strong>
+                        {{ item.content_unit_counts.docker_manifest || 'No' }}
+                    </strong>
+                    Manifests
+                </div>
+            </div>
         </div>
     </div>
     <div ng-show="loading" class="spinner spinner-lg"></div>
