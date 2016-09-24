@@ -6,6 +6,7 @@ angular.module('myApp', [
   'ui.bootstrap',
   'ui.bootstrap.tpls',
   'patternfly',
+  'infinite-scroll',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'

@@ -1,9 +1,11 @@
 <h2>Pulp Repositories</h2>
 
-<button ng-click="previous_page()" ng-show="has_previous_page()"> &lt; Previous</button>
-<button ng-click="next_page()" ng-show="has_next_page()">Next &gt;</button>
 <div class="col-md-12 list-view-container">
-    <div pf-list-view config="config" items="repos">
-        {{item.id}}
+    <div infinite-scroll="load_more()" infinite-scroll-distance="2"
+         infinite-scroll-disabled="loading">
+        <div pf-list-view config="config" items="items">
+            {{item.id}}
+        </div>
     </div>
+    <div ng-show="loading" class="spinner spinner-lg"></div>
 </div>

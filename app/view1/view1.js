@@ -11,7 +11,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$http', '$scope', function($http, $scope) {
 
-    var STEP = 20;
+    var STEP = 50;
 
     var params = {'criteria': {
         'limit': STEP,
@@ -19,49 +19,42 @@ angular.module('myApp.view1', ['ngRoute'])
         'sort': [['id', 'ascending']]
     }};
 
-    var loading = false;
+    var full_data_set = false;
 
-    $scope.repos = [];
+    $scope.items = [];
 
     function process_repos(response) {
-        $scope.repos = response.data || [];
-        loading = false;
+        var new_items = response.data || [];
+        if (new_items.length < STEP) {
+            full_data_set = true;
+        }
+        Array.prototype.push.apply($scope.items, new_items);
+        $scope.loading = false;
     }
 
     function get_page() {
-        // Clear the list of repos as a workaround for missing
-        // loading indicator.
-        $scope.repos = [];
-        loading = true;
+        $scope.loading = true;
         $http.post('/api/v2/repositories/search/', params)
              .then(process_repos);
     }
 
-    function next_page() {
-        params.criteria.skip += STEP;
-        get_page();
-    }
-
-    function previous_page() {
-        params.criteria.skip -= STEP;
-        get_page();
-    }
-
     function has_next_page() {
-        return !loading && $scope.repos.length == STEP;
+        return !full_data_set && !$scope.loading;
     }
 
-    function has_previous_page() {
-        return !loading && params.criteria.skip > 0;
+    function load_more() {
+        console.log('load_more');
+        if (has_next_page()) {
+            params.criteria.skip += STEP;
+            get_page();
+        }
     }
 
     $scope.config = {'showSelectBox': false}
 
-    $scope.previous_page = previous_page;
-    $scope.next_page = next_page;
+    $scope.load_more = load_more;
 
-    $scope.has_previous_page = has_previous_page;
-    $scope.has_next_page = has_next_page;
+    $scope.loading = false;
 
     get_page();
 }]);
