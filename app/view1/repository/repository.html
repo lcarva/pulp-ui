@@ -3,11 +3,72 @@
         <a ui-sref="repositories">Repositories</a>
     </li>
     <li class="active">
-        {{repo.id}}
+        {{ repo.id }}
     </li>
 </ol>
-<h2>{{repo.id}}</h2>
 
-<p>{{repo.description}}</h2>
+<h2>{{ repo.id }}</h2>
 
 <div ng-show="loading" class="spinner spinner-lg"></div>
+
+<p>{{ repo.description }}</h2>
+
+<ul class="nav nav-tabs">
+    <li ng-repeat="content_type in content_types"
+        ng-class="{active: selected_content == content_type}">
+        <a href="" ng-click="select_content(content_type)">{{ content_type }}</a>
+    </li>
+</ul>
+
+<div pf-list-view config="config" items="all_content[selected_content]">
+    <div ng-switch="item.unit_type_id">
+
+        <code ng-switch-when="docker_blob">
+            {{ item.metadata.digest }}
+        </code>
+
+        <code ng-switch-when="docker_image">
+            {{ item.metadata.image_id }}
+        </code>
+
+        <div ng-switch-when="docker_manifest">
+            <div class="list-view-pf-description">
+                <div class="list-group-item-heading">
+                    {{ item.metadata.name }}:{{ item.metadata.tag }}
+                </div>
+                <div class="list-group-item-text">
+                    <code>{{ item.metadata.digest }}</code>
+                    <code>manifest</code>
+                </div>
+            </div>
+            <div class="list-view-pf-additional-info">
+                <div class="list-view-pf-additional-info-item"
+                      ng-repeat="layer in item.metadata.fs_layers">
+                    <div>
+                        <code>{{ layer.blob_sum }}</code>
+                        <code>blob</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-switch-when="docker_tag" class="list-view-pf-description">
+            <div class="list-group-item-heading">
+                {{ item.metadata.name }}
+            </div>
+            <div class="list-group-item-text">
+                <div>
+                    <code>{{ item.metadata.manifest_digest }}</code>
+                    <code>manifest</code>
+                </div>
+            </div>
+        </div>
+
+        <code ng-switch-default>
+            {{ item.unit_id }}
+        </code>
+
+    </div>
+</div>
+
+<div ng-show="content_loading" class="spinner spinner-lg"></div>
