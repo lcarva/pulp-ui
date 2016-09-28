@@ -7,12 +7,15 @@ angular.module('myApp', [
   'ui.bootstrap.tpls',
   'patternfly',
   'infinite-scroll',
+  'ui.router',
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
+config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+      .otherwise({redirectTo: '/repositories'});
+}]).
+run(['$state', function($state) {
+    $state.transitionTo('repositories');
 }]);

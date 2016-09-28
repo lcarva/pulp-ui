@@ -9,6 +9,7 @@
   <title>My AngularJS App</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -34,11 +35,11 @@
 	  </div>
 	  <div class="collapse navbar-collapse navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-primary">
-		  <li class="active">
-			<a href="#!/view1">Repositories</a>
+		  <li ui-sref-active="active">
+			<a ui-sref="repositories">Repositories</a>
 		  </li>
-		  <li>
-			<a href="#!/view2">view2</a>
+		  <li ui-sref-active="active">
+			<a ui-sref="view2">view2</a>
 		  </li>
 		</ul>
 	  </div>
@@ -51,7 +52,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-		  <div ng-view></div>
+		  <div ui-view></div>
       <div>
     <div>
   </div>
@@ -70,6 +71,7 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="bower_components/angular-patternfly/dist/angular-patternfly.min.js"></script>
   <script src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
+  <script src='bower_components/angular-ui-router/release/angular-ui-router.min.js'></script>
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>

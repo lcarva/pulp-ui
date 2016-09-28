@@ -1,15 +1,19 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', [])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
+.config(['$stateProvider', function($stateProvider) {
+
+    $stateProvider.state( {
+        name: 'repositories',
+        url: '/repositories',
+        templateUrl: '/view1/view1.html',
+        controller: 'ReposCtrl'
+    });
+
 }])
 
-.controller('View1Ctrl', ['$http', '$scope', function($http, $scope) {
+.controller('ReposCtrl', ['$http', '$scope', function($http, $scope) {
 
     var STEP = 50;
 
@@ -25,6 +29,7 @@ angular.module('myApp.view1', ['ngRoute'])
 
     function process_repos(response) {
         var new_items = response.data || [];
+        // Augment repositories to easily check for empty ones
         new_items.forEach(function(item) {
             var total_content_units = 0;
             for (var unit in item.content_unit_counts) {
@@ -51,7 +56,6 @@ angular.module('myApp.view1', ['ngRoute'])
     }
 
     function load_more() {
-        console.log('load_more');
         if (has_next_page()) {
             params.criteria.skip += STEP;
             get_page();
