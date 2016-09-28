@@ -6,7 +6,9 @@
         <div pf-list-view config="config" items="items">
             <div class="list-view-pf-description">
                 <div class="list-group-item-heading">
-                    {{ item.id }}
+                    <a ui-sref="repository({repo_id: item.id })">
+                        {{item.id}}
+                    </a>
                 </div>
                 <div class="list-group-item-text">
                     {{ item.description }}

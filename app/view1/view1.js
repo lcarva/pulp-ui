@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', [])
+angular.module('myApp.repositories', [])
 
 .config(['$stateProvider', function($stateProvider) {
 

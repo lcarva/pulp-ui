@@ -8,9 +8,8 @@ angular.module('myApp', [
   'patternfly',
   'infinite-scroll',
   'ui.router',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'myApp.repositories',
+  'myApp.view2'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider
