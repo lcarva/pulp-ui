@@ -32,32 +32,34 @@
         </code>
 
         <div ng-switch-when="docker_manifest">
-            <div class="list-view-pf-description">
-                <div class="list-group-item-heading">
-                    {{ item.metadata.name }}:{{ item.metadata.tag }}
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <strong>
+                        {{ item.metadata.name }}:{{ item.metadata.tag }}
+                    </strong>
                 </div>
-                <div class="list-group-item-text">
+                <div class="col-xs-12">
                     <code>{{ item.metadata.digest }}</code>
                     <code>manifest</code>
                 </div>
-            </div>
-            <div class="list-view-pf-additional-info">
-                <div class="list-view-pf-additional-info-item"
-                      ng-repeat="layer in item.metadata.fs_layers">
-                    <div>
+                <div class="col-xs-12">
+                    <ul>
+                    <li ng-repeat="layer in item.metadata.fs_layers">
                         <code>{{ layer.blob_sum }}</code>
                         <code>blob</code>
-                    </div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <div ng-switch-when="docker_tag" class="list-view-pf-description">
-            <div class="list-group-item-heading">
-                {{ item.metadata.name }}
-            </div>
-            <div class="list-group-item-text">
-                <div>
+        <div ng-switch-when="docker_tag">
+            <div class="row">
+                <div class="col-xs-12">
+                    <strong>{{ item.metadata.name }}</strong>
+                </div>
+                <div class="col-xs-12">
                     <code>{{ item.metadata.manifest_digest }}</code>
                     <code>manifest</code>
                 </div>
