@@ -53,6 +53,7 @@
     <div class="row">
       <div class="col-xs-12">
 		  <div ui-view></div>
+<!--#echo var="DATE_LOCAL" -->
       <div>
     <div>
   </div>
