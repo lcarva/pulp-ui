@@ -2,6 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
+  'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
   'ui.bootstrap.tpls',
@@ -9,7 +10,6 @@ angular.module('myApp', [
   'infinite-scroll',
   'ui.router',
   'myApp.repositories',
-  'myApp.view2'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider

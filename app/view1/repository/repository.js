@@ -56,12 +56,13 @@ angular.module('myApp.repositories')
     $scope.select_content = select_content;
 
     $scope.loading = true;
-    $http.get('/api/v2/repositories/' + $stateParams.repo_id)
+    $http.get('/api/v2/repositories/' + $stateParams.repo_id,
+              {params: {details: true}})
          .then(process_repo)
          .then(get_content)
          .then(process_content);
 
     $scope.repo = {id: $stateParams.repo_id};
 
-    $scope.config = {'showSelectBox': false}
+    $scope.config = {'showSelectBox': false};
 }]);

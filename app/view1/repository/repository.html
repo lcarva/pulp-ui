@@ -13,6 +13,44 @@
 
 <p>{{ repo.description }}</h2>
 
+<div class="row">
+    <div ng-repeat="distributor in repo.distributors" class="col-xs-12 col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>
+                    <span class="pficon pficon-export" title="exporter"></span>
+                    {{ distributor.distributor_type_id }}
+                    <!-- TODO: type does not imply ID. -->
+                </h4>
+
+                <div>
+                    auto publish: {{ distributor.auto_publish }}
+                </div>
+
+                <div>
+                    last publish: {{ distributor.last_publish }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="importer in repo.importers" class="col-xs-12 col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>
+                    <span class="pficon pficon-import" title="importer"></span>
+                    {{ importer.importer_type_id }}
+                </h4>
+
+                <div>
+                    last sync: {{ importer.last_sync }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <ul class="nav nav-tabs">
     <li ng-repeat="content_type in content_types"
         ng-class="{active: selected_content == content_type}">
