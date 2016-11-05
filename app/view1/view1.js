@@ -1,19 +1,7 @@
 'use strict';
 
-angular.module('myApp.repositories', [])
-
-.config(['$stateProvider', function($stateProvider) {
-
-    $stateProvider.state( {
-        name: 'repositories',
-        url: '/repositories',
-        templateUrl: '/view1/view1.html',
-        controller: 'ReposCtrl'
-    });
-
-}])
-
-.controller('ReposCtrl', ['$http', '$scope', function($http, $scope) {
+angular.module('myApp.repositories', []).controller('ReposCtrl',
+['$http', '$scope', function($http, $scope) {
 
     var STEP = 50;
 

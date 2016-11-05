@@ -1,20 +1,7 @@
 'use strict';
 
-angular.module('myApp.repositories')
-
-.config(['$stateProvider', function($stateProvider) {
-
-    $stateProvider.state({
-        name: 'repository',
-        url: '/repositories/:repo_id',
-        templateUrl: '/view1/repository/repository.html',
-        controller: 'RepoCtrl'
-    });
-
-}])
-
-.controller('RepoCtrl', ['$http', '$scope', '$stateParams',
-                          function($http, $scope, $stateParams) {
+angular.module('myApp.repositories').controller('RepoCtrl',
+['$http', '$scope', '$stateParams', function($http, $scope, $stateParams) {
 
     function get_content(repo) {
         $scope.content_types = Object.keys(repo.content_unit_counts).sort()
