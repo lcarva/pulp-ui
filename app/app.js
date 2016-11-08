@@ -10,6 +10,7 @@ angular.module('myApp', [
   'infinite-scroll',
   'ui.router',
   'myApp.repositories',
+  'myApp.tasks'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider

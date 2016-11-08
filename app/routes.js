@@ -4,6 +4,13 @@ angular.module('myApp').config(
 ['$stateProvider', function($stateProvider) {
 
     $stateProvider.state( {
+        name: 'tasks',
+        url: '/tasks',
+        templateUrl: '/tasks/tasks.html',
+        controller: 'TasksCtrl'
+    });
+
+    $stateProvider.state( {
         name: 'repositories',
         url: '/repositories',
         templateUrl: '/view1/view1.html',

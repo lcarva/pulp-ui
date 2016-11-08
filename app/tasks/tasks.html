@@ -1,0 +1,33 @@
+<h2>Pulp Tasks</h2>
+
+<div class="col-md-12 list-view-container">
+    <div infinite-scroll="load_more()" infinite-scroll-distance="2"
+         infinite-scroll-disabled="loading"
+         class="list-group">
+        <li ng-repeat="item in items" class="row list-group-item">
+            <div class="col-xs-12 list-group-item-heading">
+                <span ng-switch="item.state">
+                    <span ng-switch-when="running" title="running"
+                          class="pficon pficon-running"></span>
+                    <span ng-switch-when="finished" title="finished"
+                          class="pficon pficon-ok"></span>
+                    <span ng-switch-when="error" title="error"
+                          class="pficon pficon-error-circle-o"></span>
+                    <span ng-switch-when="canceled" title="canceled"
+                          class="fa fa-stop-circle"></span>
+                    <span ng-switch-when="skipped" title="skipped"
+                          class="fa fa-minus"></span>
+                    <span ng-switch-when="waiting" title="waiting"
+                          class="fa fa-circle-o-notch"></span>
+                </span>
+                {{item.task_id}}
+            </div>
+            <div class="col-xs-12">
+                <span ng-repeat="tag in item.tags">
+                    <span class="badge">{{ tag }}</span>
+                <span>
+            </div>
+        </li>
+    </div>
+    <div ng-show="loading" class="spinner spinner-lg"></div>
+</div>
