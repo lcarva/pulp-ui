@@ -5,26 +5,29 @@
          infinite-scroll-disabled="loading"
          class="list-group">
         <li ng-repeat="item in items" class="row list-group-item">
-            <div class="col-xs-12 list-group-item-heading">
-                <span ng-switch="item.state">
-                    <span ng-switch-when="running" title="running"
-                          class="pficon pficon-running"></span>
-                    <span ng-switch-when="finished" title="finished"
-                          class="pficon pficon-ok"></span>
-                    <span ng-switch-when="error" title="error"
-                          class="pficon pficon-error-circle-o"></span>
-                    <span ng-switch-when="canceled" title="canceled"
-                          class="fa fa-stop-circle"></span>
-                    <span ng-switch-when="skipped" title="skipped"
-                          class="fa fa-minus"></span>
-                    <span ng-switch-when="waiting" title="waiting"
-                          class="fa fa-circle-o-notch"></span>
-                </span>
-                {{item.task_id}}
+            <div class="col-xs-12">
+                {{ item.state }}
+                -
+                <strong>{{ item.title }}</strong>
             </div>
             <div class="col-xs-12">
-                <span ng-repeat="tag in item.tags">
-                    <span class="badge">{{ tag }}</span>
+                {{ item.task_id }}
+            </div>
+            <div class="col-xs-12" ng-if="item.finish_time">
+                Finished at {{ item.finish_time }}
+            </div>
+            <div class="col-xs-12">
+                <ul class="list-inline">
+                    <li ng-repeat="repo in item.repos">
+                        <a ui-sref="repository({repo_id: repo })">
+                            {{ repo }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12">
+                <span ng-repeat="tag in item.tags" class="badge">
+                    {{ tag }}
                 <span>
             </div>
         </li>
